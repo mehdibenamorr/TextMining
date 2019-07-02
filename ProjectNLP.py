@@ -1,6 +1,6 @@
 # Query inputting
 
-Text1=open("C:/Users/NOOB YASUO/Desktop/Text mining project/query.txt","r")
+Text1=open("query.txt","r")
 text=Text1.read()
 query=text.split("\n")
 q=18
@@ -41,7 +41,7 @@ def hasNumbers(inputString):
 
 
 
-tags=open("C:/Users/NOOB YASUO/Desktop/Text mining project/POS_TAGS.txt","r")
+tags=open("POS_TAGS.txt","r")
 tags=tags.read()
 tags=tags.split("\n")
 
@@ -83,7 +83,7 @@ for i in range(0,len(possible_funcs)):
 # Loading the acktionKB (methods and their parameters)
 
 import json
-actionKB=json.loads(open("C:/Users/NOOB YASUO/Desktop/Text mining project/data/actionkb.json").read())
+actionKB=json.loads(open("data/actionkb.json").read())
 functions=[actionKB[i]["NAME"].replace("_"," ") for i in range(0,len(actionKB))]
 functions_desc=[actionKB[i]["Desc"] for i in range(0,len(actionKB))]
 
@@ -179,7 +179,7 @@ candidates=scores[0:left+1]
 from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
 
-NER = StanfordNERTagger('C:/Users/NOOB YASUO/Desktop/Text mining project/stanford-ner-2016-10-31/classifiers/english.all.3class.caseless.distsim.crf.ser.gz','C:/Users/NOOB YASUO/Desktop/Text mining project/stanford-ner-2016-10-31/stanford-ner.jar',encoding='utf-8')
+NER = StanfordNERTagger('stanford-ner-2016-10-31/classifiers/english.all.3class.caseless.distsim.crf.ser.gz','stanford-ner-2016-10-31/stanford-ner.jar',encoding='utf-8')
 
 """ This in order to ignore the warnings"""
 import warnings
@@ -240,7 +240,7 @@ def getcode(): # method that will return python code to execute
                     elif Format[0]=="''":
                         param=query[q][query[q].find('"'):query[q].rfind('"')+1]
                     else:
-                        DB=json.loads(open("C:/Users/NOOB YASUO/Desktop/Text mining project/data/"+actionKB[f[2]]['PARAMS'][i]['Data']).read())
+                        DB=json.loads(open("data/"+actionKB[f[2]]['PARAMS'][i]['Data']).read())
                         check=False
                         for a in DB: 
                              if param in a.values():
