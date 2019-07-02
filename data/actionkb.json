@@ -1,0 +1,550 @@
+[
+{
+    "ACTION ID": "01",
+    "API":"forex_python",
+    "NAME":"get_rate",
+	"Desc":"return the conversion rate between two currencies.",
+	"PARAMSNB":"2",
+    "PARAMS":[
+	
+            {
+                "Name": "source currency",
+                "Desc": "The source currency from which we want to convert.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            },
+            {
+                "Name":"destination currency",
+                "Desc":"The destination currency to which we want to convert.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            }             
+    ],
+	"instantiation": "from forex_python.converter import CurrencyRates ;c=CurrencyRates() ;print(c.get_rate('source currency','destination currency'))"
+},
+{
+    "ACTION ID": "02",
+    "API":"forex_python",
+    "NAME":"get_rates",
+	"Desc":"list all latest currency rates for a given currency.",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "currency",
+                "Desc": "The source currency from which we want to convert.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            }          
+    ],
+	"instantiation": "from forex_python.converter import CurrencyRates  ;c=CurrencyRates() ;print(c.get_rates('currency'))"
+},
+{
+    "ACTION ID": "03",
+    "API":"forex_python",
+    "NAME":"convert",
+	"Desc":"convert money value from one currency to another.",
+	"PARAMSNB":"3",
+    "PARAMS":[
+	
+            {
+                "Name": "source currency",
+                "Desc": "The source currency from which we want to convert.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            },
+            {
+                "Name":"destination currency",
+                "Desc":"The destination currency to which we want to convert.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            },
+            {
+                "Name":"Value",
+                "Desc":"The amount of money to be converted",
+				"Format":"Number"
+            }               
+    ],
+	"instantiation": "from forex_python.converter import CurrencyRates ;c=CurrencyRates() ;print(c.convert('source currency','destination currency',Value))"
+},
+{
+    "ACTION ID": "04",
+    "API":"forex_python",
+    "NAME":"get_latest_price",
+	"Desc":"return the latest Bitcoin price.",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "currency",
+                "Desc": "The currency for which we want the bitcoin price.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            }           
+    ],
+	"instantiation": "from forex_python.bitcoin import BtcConverter ;b = BtcConverter() ;print(b.get_latest_price('currency'))"
+},
+{
+    "ACTION ID": "05",
+    "API":"forex_python",
+    "NAME":"get_symbol",
+	"Desc":"returns currency symbol using currency code.",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "currency",
+                "Desc": "The currency for which we want the symbol.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            }           
+    ],
+	"instantiation": "from forex_python.converter import CurrencyCodes ;c=CurrencyCodes();print(c.get_symbol('currency'))"
+},
+{
+    "ACTION ID": "06",
+    "API":"wikipedia",
+    "NAME":"search",
+	"Desc":"does a Wikipedia search for a certain query.",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "query",
+                "Desc": "The query that will be searched on wikipedia."
+				
+            }
+    ],
+	"instantiation": "import wikipedia ;wikipedia.search('query')" 
+},
+{
+    "ACTION ID": "07",
+    "API":"wikipedia",
+    "NAME":"summary",
+	"Desc":"returns a text summary of the page(article).",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "title",
+                "Desc": "The title of the page(article)."
+				
+            }
+    ],
+	"instantiation": "import wikipedia ;wikipedia.summary('title')" 
+},
+{
+    "ACTION ID": "08",
+    "API":"wikipedia",
+    "NAME":"set_lang",
+	"Desc":"Change the language of the wikipedia articles.",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "prefix",
+                "Desc": "The language of wikipedia articles.",
+                "Format":"code",
+                "Data":"languagecodes.json"
+            }
+    ],
+	"instantiation": "import wikipedia ;wikipedia.set_lang('prefix')" 
+},
+{
+    "ACTION ID": "09",
+    "API":"microsofttranslator",
+    "NAME":"translate",
+	"Desc":"Translate text to target language.",
+	"PARAMSNB":"2",
+    "PARAMS":[
+	
+            {
+                "Name": "text",
+                "Desc": "The source text(s) to be translated.",
+				"Format": "''"
+            },
+			{
+                "Name": "target language",
+                "Desc": "The language to translate the source text into.",
+                "Format":"code",
+                "Data":"languagecodes.json"
+            }
+    ],
+	"instantiation": "from microsofttranslator import Translator ;translator = Translator('<Your Client ID>', '<Your Client Secret>') ;print(translator.translate(text,'target language'))" 
+},
+{
+    "ACTION ID": "10",
+    "API":"microsofttranslator",
+    "NAME":"detect",
+	"Desc":"Detect language of the text",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "text",
+                "Desc": "The source text(s) whose language you want to identify.",
+				"Format": "''"
+            }
+    ],
+	"instantiation": "from microsofttranslator import Translator ;translator = Translator('<Your Client ID>', '<Your Client Secret>') ;translator.detect_language(text)" 
+},
+{
+    "ACTION ID": "11",
+    "API":"PyOWM",
+    "NAME":"weather_at_place",
+	"Desc":"get currently observed weather for a specific city.",
+	"PARAMSNB":"1",
+    "PARAMS":[
+	
+            {
+                "Name": "City",
+                "Desc": "the location for which to look for weather.",
+				"NER":"LOCATION",
+                "Format":"City,Country Code",
+                "Data":"countries.json"
+            }
+    ],
+	"instantiation": "import pyowm ;owm=pyowm.OWM('e692337a0e1be1f73b23bf38bd19275b');obs=owm.weather_at_place('City') ;obs.get_reception_time(timeformat='iso');w=obs.get_weather() ;print(w.get_status(),w.get_temperature('celsius'),w.get_wind(),w.get_pressure())" 
+},
+{
+    "ACTION ID": "12",
+    "API":"PyOWM",
+    "NAME":"daily_forecast",
+	"Desc":"get daily weather for the next days in a specific city",
+	"PARAMSNB":"2",
+    "PARAMS":[
+	
+            {
+                "Name": "City",
+                "Desc": "the location for which to look for weather.",
+				"NER":"LOCATION",
+                "Format":"City,Country Code",
+                "Data":"countries.json"
+            },
+			{
+                "Name": "days number",
+                "Desc": "number of the next days to look for.",
+				"Format":"Number"
+            }
+    ],
+	"instantiation": "import pyowm ;owm=pyowm.OWM('e692337a0e1be1f73b23bf38bd19275b') ;fc=owm.daily_forecast('City',limit=days number) ; f=fc.get_forecast();lst = f.get_weathers();\nfor weather in lst: print(weather.get_reference_time('iso'),weather.get_status(),weather.get_temperature('celsius'))" 
+},
+{
+    "ACTION ID": "13",
+    "API":"PyLyrics",
+    "NAME":"getLyrics",
+    "Desc":"get the lyrics of a specific song",
+	"PARAMSNB":"2",
+    "PARAMS":[
+      {
+        "Name": "singer",
+        "Desc": "The name of the singer",
+		"NER":  "PERSON"
+      },
+      {
+        "Name": "song",
+        "Desc": "The title of a song",
+		"Format":"''"
+    	}],
+
+    "instantiation":"from PyLyrics import *;print(PyLyrics.getLyrics('singer',song))"   
+},
+{
+    "ACTION ID": "14",
+    "API":"PyLyrics",
+    "NAME":"getAlbums",
+    "PARAMSNB":"1",
+    "Desc":"get the albums of a specific singer",
+    "PARAMS":[
+      {
+        "Name": "singer_name",
+        "Desc": "The name of the singer",
+		"NER":  "PERSON"
+      }],
+
+    "instantiation":"from PyLyrics import *;albums = PyLyrics.getAlbums('singer_name');\nfor a in albums:print (a)"   
+},
+{
+    "ACTION ID": "15",
+    "API":"passlib",
+    "NAME":"generate_secret",
+    "PARAMSNB":"0",
+    "Desc":"generate a secret password",
+    "PARAMS":[],
+
+    "instantiation":"from passlib.totp import generate_secret;generate_secret()"   
+},
+{
+    "ACTION ID": "16",
+    "API":"passlib",
+    "NAME":"hash",
+    "PARAMSNB":"1",
+    "Desc":"hash a given password",
+    "PARAMS":[
+      {
+        "Name": "password",
+        "Desc": "the word to be hashed",
+		"Format":"''"
+      }],
+
+    "instantiation":"from passlib.hash import pbkdf2_sha256;print(pbkdf2_sha256.hash(password))"   
+},
+{
+    "ACTION ID": "17",
+    "API":"shortid",
+    "NAME":"generate",
+    "PARAMSNB":"0",
+    "Desc":"generate a short unique ID",
+    "PARAMS":[],
+
+    "instantiation":"from shortid import ShortId;sid = ShortId();print(sid.generate())"   
+},
+{
+    "ACTION ID": "18",
+    "API":"googlefinance",
+    "NAME":"getQuotes",
+    "PARAMSNB":"1",
+    "Desc":"Python module to get real-time (no delay) stock data from Google Finance API",
+    "PARAMS":[
+      {
+        "Name": "company_code",
+        "Desc": "the name of the company ",
+		"Format":"Company_Code",
+		"Data":"companies.json"
+      }
+],
+
+    "instantiation":"from googlefinance import getQuotes;import json;print (json.dumps(getQuotes('company_code'), indent=2))"   
+},
+{
+    "ACTION ID": "19",
+    "API":"filmwebpy",
+    "NAME":"search_movie",
+    "Desc":"search for the movies that contain certain word",
+	"PARAMSNB":"1",
+    "PARAMS":[
+      {
+        "Name": "word",
+        "Desc": "the word related to movies",
+		"Format":"''"
+      }],
+
+    "instantiation":"from filmweb import Filmweb;fw = Filmweb();movies = fw.search_movie(word);\nfor i in range(len(fw)):fw[i]['title']"   
+},
+{
+    "ACTION ID": "20",
+    "API":"base92",
+    "NAME":"encode",
+    "Desc":"create base92 encoded strings",
+	"PARAMSNB":"1",
+    "PARAMS":[
+      {
+        "Name": "word",
+        "Desc": "word to be encoded",
+		"Format":"''"
+      }],
+
+    "instantiation":"import base92;base92.encode(word);"   
+},
+{
+    "ACTION ID": "21",
+    "API":"base92",
+    "NAME":"decode",
+    "Desc":"create base92 decoded strings",
+	"PARAMSNB":"1",
+    "PARAMS":[
+      {
+        "Name": "word",
+        "Desc": "word to be decoded",
+		"Format":"''"
+      }],
+
+    "instantiation":"import base92;base92.decode(word);"   
+},
+{
+    "ACTION ID": "22",
+    "API":"profanity",
+    "NAME":"censor",
+    "Desc":"censor a given phrase from profanity",
+	"PARAMSNB":"1",
+    "PARAMS":[
+      {
+        "Name": "phrase",
+        "Desc": "phrase where to be filtered",
+		"Format":"''"
+      }],
+
+    "instantiation":"from profanity import profanity;print(profanity.censor(phrase));"   
+},
+{
+    "ACTION ID": "23",
+    "API":"profanity",
+    "NAME":"contains_profanity",
+    "Desc":"see if the phrase contains profanity or not",
+	"PARAMSNB":"1",
+    "PARAMS":[
+      {
+        "Name": "phrase",
+        "Desc": "phrase where to be checked",
+		"Format":"''"
+      }],
+
+    "instantiation":"from profanity import profanity;print(profanity.contains_profanity(phrase));"   
+},
+{
+    "ACTION ID": "24",
+    "API":"wget",
+    "NAME":"download",
+    "Desc":"download utility",
+	"PARAMSNB":"1",
+    "PARAMS":[
+      {
+        "Name": "url",
+        "Desc": "link to the file that you want to download",
+		"Format":"''"
+      }],
+
+    "instantiation":"import wget;filename = wget.download(url);print(filename)"   
+},
+{
+    "ACTION ID": "25",
+    "API":"forex_python",
+    "NAME":"convert_to_btc",
+	"Desc":"convert money value to bitcoins.",
+	"PARAMSNB":"2",
+    "PARAMS":[
+	
+            {
+                "Name": "source currency",
+                "Desc": "The source currency from which we want to convert.",
+                "Format":"cc",
+                "Data":"currencies.json"
+            },
+            {
+                "Name":"Value",
+                "Desc":"The amount of money to be converted",
+				"Format":"Number"
+            }               
+    ],
+	"instantiation": "from forex_python.bitcoin import BtcConverter ;b = BtcConverter() ;b.convert_to_btc(Value,'source currency')"
+},
+{
+    "ACTION ID": "26",
+    "API":"PubChemPy",
+    "NAME":"get_compounds",
+	"Desc":"Get information about a specific compound",
+    "PARAMS":[
+	{
+                "Name": "identifier",
+                "Desc": " The compound identifier to use as a search query."                   
+    	},
+	{
+                "Name": "namespace",
+                "Desc": "(optional) The identifier type, one of cid, name, smiles, sdf, inchi, inchikey or formula."                   
+    	},
+	{
+                "Name": "searchtype",
+                "Desc": "(optional) The advanced search type, one of substructure, superstructure or similarity."                   
+    	},
+	{
+                "Name": "as_dataframe",
+                "Desc": " (optional) Automatically extract the :class:`~pubchempy.Compound` properties into a pandas :class:`~pandas.DataFrame` and return that."                   
+    	}],
+    
+    "instantiation":"from pubchempy import get_compounds, Compound\nfor compound in get_compounds('glucose', 'name'):\nprint compound.cid"
+},
+{
+    "ACTION ID": "27",
+    "API":"PubChemPy",
+    "NAME":"from_cid",
+	"Desc":"Retrieve the Compound record for the specified CID.",
+    "PARAMS":[
+	{
+                "Name": "cid",
+                "Desc": "The PubChem Compound Identifier (CID)."                   
+    	}],
+    
+    "instantiation":"from pubchempy import get_compounds, Compound\nc = Compound.from_cid(6819);print(c)"	
+},
+{
+    "ACTION ID": "28",
+    "API":"PubChemPy",
+    "NAME":"isomeric_smiles",
+	"Desc":"Isomeric SMILES: 'CS(=O)(=O)C1=CC=C(C=C1)C2=C(C(=O)OC2)C3=CC=CC=C3'",
+    "PARAMS":[],
+	"instantiation": "from pubchempy import get_compounds, Compound\nc = Compound.from_cid(6819)\nprint(c.isomeric_smiles)"
+},
+{
+    "ACTION ID": "29",
+    "API":"PubChemPy",
+    "NAME":"molecular_weight",
+	"Desc":"Molecular Weight",
+    "PARAMS":[],
+	"instantiation":  "from pubchempy import get_compounds, Compound\nc = Compound.from_cid(6819)\nprint(c.molecular_weight)"
+},
+{
+    "ACTION ID": "30",
+    "API":"PubChemPy",
+    "NAME":"molecular_formula",
+	"Desc":"Molecular formula",
+    "PARAMS":[],
+	"instantiation":  "from pubchempy import get_compounds, Compound\nc = Compound.from_cid(6819)\nprint(c.molecular_formula)"
+},
+{
+    "ACTION ID": "31",
+    "API":"skyfielders",
+    "NAME":"observe",
+    "Desc":"Compute the `Astrometric` position of a body from this location",
+    "PARAMS":[
+            {
+                "Name": "body",
+                "Desc": "the planet that we need to calculate its astrometric location"
+            }             
+			],
+    "instantiation": "from skyfield.api import load;planets = load('de421.bsp');earth, mars = planets['earth'], planets['mars'];ts = load.timescale();t = ts.now();astrometric = earth.at(t).observe(mars)"
+},
+{
+    "ACTION ID": "32",
+    "API":"skyfielders",
+    "NAME":"radec",
+    "Desc":"Compute equatorial (RA, declination, distance)",
+    "PARAMS":[],
+    "instantiation": "from skyfield.api import load;planets = load('de421.bsp');earth, mars = planets['earth'], planets['mars'];ts = load.timescale();t = ts.now();astrometric = earth.at(t).observe(mars);ra, dec, distance = astrometric.radec();print(ra);print(dec);print(distance)"
+},
+{
+    "ACTION ID": "33",
+    "API":"TextBlob",
+    "NAME":"pos_tags",
+    "Desc":"Extract tags from a given sentence .",
+    "PARAMS":[  {
+                "Name": "phrase",
+                "Desc": "phrase from where we extract tags"                   
+        }],
+    
+    "instantiation":"from textblob import TextBlob;wiki = TextBlob(phrase);print(wiki.tags)"
+},
+{
+    "ACTION ID": "34",
+    "API":"TextBlob",
+    "NAME":"noun_phrases",
+    "Desc":"Extract noun_phrases from a given sentence .",
+    "PARAMS":[{
+                "Name": "phrase",
+                "Desc": "phrase from where we extract noun_phrases"                   
+        }],
+    
+    "instantiation":"from textblob import TextBlob;wiki = TextBlob(phrase);print(wiki.noun_phrases)"
+},
+{
+    "ACTION ID": "35",
+    "API":"TextBlob",
+    "NAME":"sentiment",
+    "Desc":"The sentiment property returns a namedtuple of the form Sentiment(polarity, subjectivity). The polarity score is a float within the range [-1.0, 1.0]. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective. ",
+    "PARAMS":[{
+                "Name": "phrase",
+                "Desc": "phrase from where we calculate sentiment"                   
+        }],
+    
+    "instantiation":"from textblob import TextBlob;wiki = TextBlob(phrase);print(wiki.sentiment)"
+}
+]

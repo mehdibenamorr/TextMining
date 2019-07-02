@@ -1,0 +1,31 @@
+get the exchange rate between European EURO and US Dollar.
+get the currency exchange rate between EUR and USD.
+get all rates for Tunisian dinar.
+convert 2 USD to European Euro.
+convert 3.00 EUR to US Dollar.
+convert 300 USD to bitcoins.
+get the converted value of 1.00 USD in TND.
+get the latest bitcoin price in EUR.
+search for Youtube.
+search for articles about GitHub.
+search for the definition of Amnesia.
+get the definition of Global Warming.
+get the wikipedia page summary of Apple.
+change the language of the articles to French.
+translate "Hello World" to German.
+detect the language of "je suis heureux".
+look for the meaning of Hypocrite.
+get the meaning of Hypocrite.
+search for synonyms of Happiness.
+get the weather in Paris.
+get the weather for the next 4 days in New York City.
+get the lyrics of "Blank Space" for Taylor Swift.
+download the file from this link "http://www.futurecrew.com/skaven/song_files/mp3/razorback.mp3".
+check this phrase "I want to participate damn you coach" for profanity.
+censor this phrase profanities "You smell like shit".
+encode "hello world" to the base92.
+search the movies that contain "Spider" in their titles.
+get real-time stock data of "Apple Inc.".
+generate a short identifier.
+calculate the hash of "python is the best".
+get the albums of Eminem.
